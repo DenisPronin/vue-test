@@ -49,5 +49,7 @@ module.exports = {
     'comma-dangle': ['error', 'never'],
 
     'space-before-function-paren': ['error', 'always'],
+
+    'no-trailing-spaces': ["error", { "skipBlankLines": true }]
   }
 };

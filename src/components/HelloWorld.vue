@@ -1,5 +1,9 @@
 <template>
   <div class="hello">
+    <div>Count: {{count}}</div>
+    <button type="button" v-on:click="increment">Inc</button>
+    <button type="button" v-on:click="decrement">Dec</button>
+    <button type="button" v-on:click="asyncIncrement">asyncInc</button>
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
     <ul>
@@ -21,12 +25,31 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   name: 'HelloWorld',
+  computed: mapState({
+    count: state => state.count
+  }),
+
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
     };
+  },
+  methods: {
+    increment () {
+      this.$store.commit('increment');
+    },
+
+    asyncIncrement () {
+      this.$store.dispatch('increment');
+    },
+
+    decrement () {
+      this.$store.commit('decrement', 2);
+    }
   }
 };
 </script>
