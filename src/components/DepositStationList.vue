@@ -61,4 +61,9 @@
     height: 100%;
     width: 400px;
   }
+
+  .deposit-station-list {
+    padding: 0;
+    margin: 0;
+  }
 </style>
