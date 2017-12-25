@@ -1,5 +1,8 @@
 <template>
   <div class="deposit-station-list-container">
+    <div v-if="this.activeRoute.routeName === 'groupId'">
+      <h2 class="group-title">{{list.label}}</h2>
+    </div>
     <div role="tablist" class="deposit-station-list">
       <deposit-station-list-item
         v-for="id in list.ids"
@@ -65,5 +68,9 @@
   .deposit-station-list {
     padding: 0;
     margin: 0;
+  }
+
+  .group-title {
+    padding: 0 1.25rem;
   }
 </style>
