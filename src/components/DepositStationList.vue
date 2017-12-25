@@ -1,17 +1,21 @@
 <template>
   <div class="deposit-station-list-container">
     <ul class="deposit-station-list">
-      <li
+      <deposit-station-list-item
         v-for="id in list.ids"
-      >
-        {{allItems[id].label}}
-      </li>
+        :item='allItems[id]'
+        :isGroup='isGroup'
+        :key='id'
+      />
     </ul>
   </div>
 </template>
 
 <script>
+  import DepositStationListItem from './DepositStationListItem';
+
   export default {
+    components: { DepositStationListItem },
     name: 'DepositStationList',
 
     props: {
@@ -22,13 +26,22 @@
     },
 
     computed: {
-      list () {
-        const activeId = this.activeRoute.routeName;
-        const patients = this.$store.state.patients;
-        return patients[activeId];
+      isGroup () {
+        return this.activeRoute.routeName === 'group';
       },
 
-      allItems () {
+      list () {
+        const { routeName, routeParams } = this.activeRoute;
+        const patients = this.$store.state.patients;
+        let data = patients[routeName];
+        if (routeName === 'groupId') {
+          const groupId = routeParams.id;
+          data = patients.group.items[groupId];
+        }
+        return data;
+      },
+
+      allItems  () {
         const activeId = this.activeRoute.routeName;
         const patients = this.$store.state.patients;
         let items = patients.all.items;
