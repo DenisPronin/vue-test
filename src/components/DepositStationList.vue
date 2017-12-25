@@ -1,8 +1,11 @@
 <template>
   <div class="deposit-station-list-container">
-    <div v-if="this.activeRoute.routeName === 'groupId'">
-      <h2 class="group-title">{{list.label}}</h2>
+
+    <div class="group-header" v-if="this.activeRoute.routeName === 'groupId'">
+      <h3>{{list.label}}</h3>
+      <a href="#" v-on:click="goBack">Back</a>
     </div>
+
     <div role="tablist" class="deposit-station-list">
       <deposit-station-list-item
         v-for="id in list.ids"
@@ -53,6 +56,12 @@
         }
         return items;
       }
+    },
+
+    methods: {
+      goBack () {
+        this.$router.go(-1);
+      }
     }
 
   };
@@ -70,7 +79,10 @@
     margin: 0;
   }
 
-  .group-title {
+  .group-header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
     padding: 0 1.25rem;
   }
 </style>
