@@ -5,7 +5,8 @@
 </template>
 
 <script>
-  import 'normalize.css';
+  import 'bootstrap/dist/css/bootstrap.css';
+  import 'bootstrap-vue/dist/bootstrap-vue.css';
 
   export default {
     name: 'app'
@@ -15,9 +16,5 @@
 <style>
   #app {
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  }
-
-  * {
-    box-sizing: border-box;
   }
 </style>

@@ -1,13 +1,13 @@
 <template>
   <div class="deposit-station-list-container">
-    <ul class="deposit-station-list">
+    <div role="tablist" class="deposit-station-list">
       <deposit-station-list-item
         v-for="id in list.ids"
         :item='allItems[id]'
         :isGroup='isGroup'
         :key='id'
       />
-    </ul>
+    </div>
   </div>
 </template>
 

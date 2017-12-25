@@ -1,14 +1,21 @@
 <template>
-  <li class="deposit-station-list-item" v-on:click="clickItem">
-    <div class='item-main'>
+  <b-card no-body class="deposit-station-list-item" v-on:click="clickItem">
+
+    <b-card-header header-tag="header" class="deposit-station-list-item-header" role="tab">
       <b>{{item.label}}</b>
       <i class='fa fa-caret-down' />
+    </b-card-header>
+
+    <div v-if="!isGroup">
+      <b-collapse :id="'collapse-item' + item.id" :visible="isExpanded" role="tabpanel">
+        <b-card-body class="deposit-station-list-item-body">
+          <div>Tel: {{item.details.tel}}</div>
+          <div>Email: {{item.details.email}}</div>
+        </b-card-body>
+      </b-collapse>
     </div>
-    <div class='item-detail' v-if="isExpanded ">
-      <div>Tel: {{item.details.tel}}</div>
-      <div>Email: {{item.details.email}}</div>
-    </div>
-  </li>
+
+  </b-card>
 </template>
 
 <script>
@@ -47,18 +54,23 @@
 
 <style scoped>
   .deposit-station-list-item {
+    border: 0;
     border-bottom: 1px solid #ccc;
     list-style: none;
-    padding: 15px;
+    padding: 0;
     width: 100%;
   }
 
-  .item-main {
+  .deposit-station-list-item-header {
+    align-items: center;
+    background: #fff;
+    border-bottom: 0;
+    cursor: pointer;
     display: flex;
     justify-content: space-between;
   }
 
-  .item-detail {
-
+  .deposit-station-list-item-body {
+    padding-top: 0;
   }
 </style>
