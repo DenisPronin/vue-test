@@ -1,8 +1,8 @@
 <template>
   <div class="deposit-station">
     <div v-if="isReady" class="deposit-station__ready">
-      <deposit-station-navigation />
-      <deposit-station-list />
+      <deposit-station-navigation :activeRoute="activeRoute" />
+      <deposit-station-list :activeRoute="activeRoute" />
     </div>
   </div>
 </template>
@@ -22,9 +22,18 @@
       this.$store.dispatch('common/loadData');
     },
 
-    computed: mapState({
-      isReady: state => !state.common.isPending
-    })
+    computed: {
+      activeRoute () {
+        return {
+          routeName: this.$route.name,
+          routeParams: this.$route.params
+        };
+      },
+
+      ...mapState({
+        isReady: state => !state.common.isPending
+      })
+    }
   };
 </script>
 

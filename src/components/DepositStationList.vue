@@ -11,35 +11,33 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex';
-
   export default {
     name: 'DepositStationList',
 
-    computed: mapState({
-      list: (state) => {
-        const activeId = state.navigation.activeId;
-        const patients = state.patients;
-        let data = patients.activePatients;
-        if (activeId === 'archive') {
-          data = patients.archivePatients;
-        }
-        if (activeId === 'group') {
-          data = patients.groups;
-        }
-        return data;
+    props: {
+      activeRoute: {
+        type: Object,
+        required: true
+      }
+    },
+
+    computed: {
+      list () {
+        const activeId = this.activeRoute.routeName;
+        const patients = this.$store.state.patients;
+        return patients[activeId];
       },
 
-      allItems: (state) => {
-        const activeId = state.navigation.activeId;
-        const patients = state.patients;
+      allItems () {
+        const activeId = this.activeRoute.routeName;
+        const patients = this.$store.state.patients;
         let items = patients.all.items;
         if (activeId === 'group') {
-          items = patients.groups.items;
+          items = patients.group.items;
         }
         return items;
       }
-    })
+    }
 
   };
 </script>

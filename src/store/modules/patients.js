@@ -43,17 +43,17 @@ export default {
       items: {}
     },
 
-    activePatients: {
+    AZ: {
       ids: [],
       activeId: ''
     },
 
-    archivePatients: {
+    archive: {
       ids: [],
       activeId: ''
     },
 
-    groups: {
+    group: {
       ids: [],
       items: {},
       activeId: ''
@@ -71,12 +71,12 @@ export default {
     init (state, payload) {
       const { all, groups, activeIds, archiveIds } = parseData(payload);
       state.all = all;
-      state.groups = groups;
-      state.activePatients = {
+      state.group = groups;
+      state.AZ = {
         ids: activeIds,
         activeId: ''
       };
-      state.archivePatients = {
+      state.archive = {
         ids: archiveIds,
         activeId: ''
       };

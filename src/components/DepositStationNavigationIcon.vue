@@ -1,6 +1,6 @@
 <template>
-  <li class="icons-list__item" v-on:click="selectNavigationItem">
-    <span v-bind:class="classObject"></span>
+  <li class="icons-list__item">
+    <router-link :to="item.id" v-bind:class="classObject"></router-link>
   </li>
 </template>
 
@@ -29,12 +29,6 @@
           'fa fa-archive': id === 'archive'
         }];
       }
-    },
-
-    methods: {
-      selectNavigationItem () {
-        this.$store.commit('navigation/selectNavigationItem', this.item.id);
-      }
     }
   };
 </script>
@@ -47,6 +41,10 @@
     display: flex;
     list-style: none;
     margin-bottom: 15px;
+  }
+
+  .icon {
+    color: inherit;
   }
 
   .icons-list__item:hover,

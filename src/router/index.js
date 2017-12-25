@@ -8,7 +8,23 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
+      alias: '/AZ',
+      name: 'AZ',
+      component: DepositStation
+    },
+    {
+      path: '/group',
+      name: 'group',
+      component: DepositStation
+    },
+    {
+      path: '/group/:id',
+      name: 'groupId',
+      component: DepositStation
+    },
+    {
+      path: '/archive',
+      name: 'archive',
       component: DepositStation
     }
   ]

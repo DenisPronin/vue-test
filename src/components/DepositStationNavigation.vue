@@ -4,7 +4,7 @@
     <ul class="icons-list">
       <deposit-station-navigation-icon
         v-for="id in navigation.ids"
-        :active-id='navigation.activeId'
+        :active-id='activeRoute.routeName'
         :item='navigation.items[id]'
         :key="id"
       />
@@ -20,6 +20,13 @@
   export default {
     components: { DepositStationNavigationIcon },
     name: 'DepositStationNavigation',
+
+    props: {
+      activeRoute: {
+        type: Object,
+        required: true
+      }
+    },
 
     computed: mapState({
       navigation: state => state.navigation
