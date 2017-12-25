@@ -50,6 +50,10 @@ module.exports = {
 
     'space-before-function-paren': ['error', 'always'],
 
-    'no-trailing-spaces': ["error", { "skipBlankLines": true }]
+    'no-trailing-spaces': ["error", { "skipBlankLines": true }],
+
+    'linebreak-style': 'off',
+
+    'no-console': 'off'
   }
 };

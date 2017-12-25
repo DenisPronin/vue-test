@@ -29,6 +29,11 @@ import { mapState } from 'vuex';
 
 export default {
   name: 'HelloWorld',
+
+  created () {
+    this.$store.dispatch('common/loadData');
+  },
+
   computed: mapState({
     count: state => state.count
   }),
