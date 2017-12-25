@@ -60,6 +60,7 @@ export default {
     },
 
     filter: {
+      isOpened: false,
       search: '',
       isPending: false,
       ids: []

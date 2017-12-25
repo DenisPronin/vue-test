@@ -5,13 +5,19 @@
 </template>
 
 <script>
-export default {
-  name: 'app'
-};
+  import 'normalize.css';
+
+  export default {
+    name: 'app'
+  };
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-}
+  #app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
 </style>
