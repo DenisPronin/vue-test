@@ -24,7 +24,7 @@ const parseData = (items) => {
       if (!groups.items[groupTitle]) {
         groups.ids.push(groupTitle);
         groups.items[groupTitle] = {
-          title: groupTitle,
+          label: groupTitle,
           ids: [],
           activeId: ''
         };

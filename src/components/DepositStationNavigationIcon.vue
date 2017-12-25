@@ -1,5 +1,5 @@
 <template>
-  <li class="icons-list__item">
+  <li class="icons-list__item" v-on:click="selectNavigationItem">
     <span v-bind:class="classObject"></span>
   </li>
 </template>
@@ -31,7 +31,11 @@
       }
     },
 
-    methods: {}
+    methods: {
+      selectNavigationItem () {
+        this.$store.commit('navigation/selectNavigationItem', this.item.id);
+      }
+    }
   };
 </script>
 

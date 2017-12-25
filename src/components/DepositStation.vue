@@ -2,6 +2,7 @@
   <div class="deposit-station">
     <div v-if="isReady" class="deposit-station__ready">
       <deposit-station-navigation />
+      <deposit-station-list />
     </div>
   </div>
 </template>
@@ -9,9 +10,12 @@
 <script>
   import { mapState } from 'vuex';
   import DepositStationNavigation from './DepositStationNavigation';
+  import DepositStationList from './DepositStationList';
 
   export default {
-    components: { DepositStationNavigation },
+    components: {
+      DepositStationList,
+      DepositStationNavigation },
     name: 'DepositStation',
 
     created () {
@@ -33,6 +37,8 @@
   }
 
   .deposit-station__ready {
+    display: flex;
+    flex-direction: row-reverse;
     height: 100%;
   }
 </style>

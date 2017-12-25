@@ -12,7 +12,8 @@ export default {
   namespaced: true,
   state: {
     ids: [],
-    items: {}
+    items: {},
+    activeId: ''
   },
 
   mutations: {
@@ -23,6 +24,10 @@ export default {
       if (ids.length > 0) {
         state.activeId = ids[0];
       }
+    },
+
+    selectNavigationItem (state, id) {
+      state.activeId = id;
     }
   },
 
