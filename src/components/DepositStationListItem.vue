@@ -3,7 +3,7 @@
 
     <b-card-header header-tag="header" class="deposit-station-list-item-header" role="tab">
       <b>{{item.label}}</b>
-      <i class='fa fa-caret-down' />
+      <i :class="['fa', {'fa-caret-down': !isExpanded, 'fa-caret-up': isExpanded}]" />
     </b-card-header>
 
     <div v-if="!isGroup">
