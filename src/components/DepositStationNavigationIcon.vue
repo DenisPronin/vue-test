@@ -1,6 +1,6 @@
 <template>
   <li class="icons-list__item">
-    <router-link :to="item.id" v-bind:class="classObject"></router-link>
+    <router-link :to="`/${item.id}`" v-bind:class="classObject"></router-link>
   </li>
 </template>
 
