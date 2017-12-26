@@ -26,11 +26,23 @@ const parseData = (items) => {
         groups.items[groupTitle] = {
           label: groupTitle,
           ids: [],
-          activeId: ''
+          page: 1
         };
       }
       groups.items[groupTitle].ids.push(id);
     }
+  });
+
+  // add pagination for groups
+  groups.page = 1;
+  groups.pageSize = 25;
+  groups.total = groups.ids.length;
+
+  groups.ids.forEach((groupId) => {
+    const group = groups.items[groupId];
+    group.page = 1;
+    group.pageSize = 25;
+    group.total = group.ids.length;
   });
 
   return { all, groups, activeIds, archiveIds };
@@ -45,18 +57,24 @@ export default {
 
     AZ: {
       ids: [],
-      activeId: ''
+      page: 1,
+      pageSize: 25,
+      total: 0
     },
 
     archive: {
       ids: [],
-      activeId: ''
+      page: 1,
+      pageSize: 25,
+      total: 0
     },
 
     group: {
       ids: [],
       items: {},
-      activeId: ''
+      page: 1,
+      pageSize: 25,
+      total: 0
     },
 
     filter: {
@@ -73,13 +91,26 @@ export default {
       state.all = all;
       state.group = groups;
       state.AZ = {
+        ...state.AZ,
         ids: activeIds,
-        activeId: ''
+        total: activeIds.length,
+        page: 1
       };
       state.archive = {
+        ...state.archive,
         ids: archiveIds,
-        activeId: ''
+        total: archiveIds.length,
+        page: 1
       };
+    },
+
+    changePage (state, payload) {
+      const { page, listId, groupId } = payload;
+      if (listId === 'groupId') {
+        state.group.items[groupId].page = page;
+      } else {
+        state[listId].page = page;
+      }
     }
   },
 

@@ -14,6 +14,10 @@
         :key='id'
       />
     </div>
+
+    <b-pagination size="md" :total-rows="list.total" v-model="list.page" :per-page="list.pageSize" v-on:change="changePage">
+    </b-pagination>
+
   </div>
 </template>
 
@@ -44,14 +48,17 @@
           const groupId = routeParams.id;
           data = patients.group.items[groupId];
         }
-        return data;
+        const start = (data.page - 1) * data.pageSize;
+        let end = start + data.pageSize;
+        end = end > data.ids.length ? data.ids.length : end;
+        return { ...data, ids: data.ids.slice(start, end) };
       },
 
       allItems  () {
-        const activeId = this.activeRoute.routeName;
+        const routeName = this.activeRoute.routeName;
         const patients = this.$store.state.patients;
         let items = patients.all.items;
-        if (activeId === 'group') {
+        if (routeName === 'group') {
           items = patients.group.items;
         }
         return items;
@@ -61,6 +68,15 @@
     methods: {
       goBack () {
         this.$router.go(-1);
+      },
+
+      changePage (page) {
+        const { routeName, routeParams } = this.activeRoute;
+        this.$store.commit('patients/changePage', {
+          page,
+          listId: routeName,
+          groupId: routeParams.id
+        });
       }
     }
 
@@ -71,6 +87,7 @@
   .deposit-station-list-container {
     border: 1px solid #ccc;
     height: 100%;
+    overflow: auto;
     width: 400px;
   }
 
