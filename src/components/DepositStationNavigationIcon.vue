@@ -45,6 +45,7 @@
 
   .icon {
     color: inherit;
+    text-decoration: none;
   }
 
   .icons-list__item:hover,

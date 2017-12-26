@@ -6,7 +6,7 @@
       <a href="#" v-on:click="goBack">Back</a>
     </div>
 
-    <div role="tablist" :class="['deposit-station-list', {'deposit-station-list--groupId': isGroupId}]">
+    <div role="tablist" :class="['deposit-station-list', {'deposit-station-list--with-header': isGroupId}]">
       <deposit-station-list-item
         v-for="id in list.ids"
         :item='allItems[id]'
@@ -102,7 +102,7 @@
     max-height: calc(100vh - 62px);
   }
 
-  .deposit-station-list--groupId {
+  .deposit-station-list--with-header {
     max-height: calc(100vh - 103px);
   }
 
